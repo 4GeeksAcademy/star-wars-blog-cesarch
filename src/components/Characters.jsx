@@ -1,20 +1,17 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 
-export const LandingPage = () => {
+export const Characters = () => {
 
     const [characters,setCharacters] = useState([])
-    const [planes,setPlanes] = useState([])
-    const [vehicles,setVehicles] = useState([])
 
     useEffect(() => {
         getCharacters()
     }, [])
   
   const getCharacters = async () => {
-        const characters = "https://www.swapi.tech/api/people?page=1&limit=25"
+        const characters = "https://www.swapi.tech/api/people?page=1&limit=10"
         try {
             const response = await fetch(characters)
             const data = await response.json()
@@ -37,7 +34,7 @@ export const LandingPage = () => {
 
   return (
     <div className="container mt-4">
-      <h3>Characters</h3>
+      <h3 className="text-light">Characters</h3>
 
       <div id="cardCarousel" className="carousel slide" data-bs-ride="false">
         <div className="carousel-inner">
