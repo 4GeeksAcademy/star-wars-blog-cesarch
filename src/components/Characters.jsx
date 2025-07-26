@@ -45,13 +45,17 @@ export const Characters = () => {
             >
               <div className="d-flex justify-content-center">
                 {group.map((item, i) => (
-                  <div className="card mx-2" style={{ width: "800px", height: "400px" }} key={i}>
+                  <div className="card mx-2" style={{ width: "800px", height: "500px" }} key={i}>
                     <img src={rigoImageUrl} alt="" className="card-img-top" />
                     <div className="card-body">
                       <h5 className="d-flex card-title">{item.name}</h5>
                       <p className="d-flex card-text">Eye color: {item.eye_color}</p>
                       <p className="d-flex card-text">Hair color: {item.hair_color}</p>
                       <p className="d-flex card-text">Gender: {item.gender}</p>
+                      <div className="container-fluid d-flex">
+                          <button type="button" className="btn btn-dark text-light">Learn More!</button>
+                          <button type="button" className="btn btn-dark text-light ms-2"><i className="fa-solid fa-heart"></i></button>
+                        </div>
                     </div>
                   </div>
                 ))}
