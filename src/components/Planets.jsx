@@ -16,10 +16,13 @@ export const Planets = () => {
             const data = await response.json()
 
             const planetsProperties = await Promise.all(
-                data.results.map(async (plganet) => {
+                data.results.map(async (planet) => {
                     const response = await fetch(planet.url)
                     const data = await response.json()
-                    return data.result.properties
+                    return {
+                      ...data.result.properties,
+                      uid: planet.uid
+                    }
                 })
             )
 
@@ -55,7 +58,9 @@ return (
                           <p className="d-flex card-text">Planet Terrain: {item.terrain}</p>
                           <p className="d-flex card-text">Planet Population: {item.population}</p>
                           <div className="container-fluid d-flex">
+                          <Link to ={`/singlepage/${item.uid}`}>
                           <button type="button" className="btn btn-dark text-light">Learn More!</button>
+                          </Link>
                           <button type="button" className="btn btn-dark text-light ms-2"><i className="fa-solid fa-heart"></i></button>
                         </div>
                         </div>

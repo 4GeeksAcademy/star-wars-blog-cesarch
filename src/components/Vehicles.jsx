@@ -20,7 +20,10 @@ export const Vehicles = () => {
             data.results.map(async(vehicles) =>{
                 const response = await fetch(vehicles.url)
                 const data = await response.json()
-                return data.result.properties 
+                return {
+                  ...data.result.properties,
+                  uid: vehicles.uid
+                } 
             })
         )
 
@@ -53,7 +56,9 @@ export const Vehicles = () => {
                           <p className="d-flex card-text">Vehicle Class: {item.vehicle_class}</p>
                           <p className="d-flex card-text">Vehicle Price: {item.cost_in_credits}</p>
                           <div className="container-fluid d-flex">
+                          <Link to={`/singlevehicle/${item.uid}`}>
                           <button type="button" className="btn btn-dark text-light">Learn More!</button>
+                          </Link>
                           <button type="button" className="btn btn-dark text-light ms-2"><i className="fa-solid fa-heart"></i></button>
                         </div>
                         </div>

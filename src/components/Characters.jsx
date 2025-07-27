@@ -20,8 +20,11 @@ export const Characters = () => {
                 data.results.map(async (person) => {
                     const response = await fetch(person.url)
                     const data = await response.json()
-                    return data.result.properties
-                })
+                    return {
+                      ...data.result.properties, 
+                      uid: person.uid
+                }
+              })
             )
 
             setCharacters(characterPropperties)
@@ -53,7 +56,9 @@ export const Characters = () => {
                       <p className="d-flex card-text">Hair color: {item.hair_color}</p>
                       <p className="d-flex card-text">Gender: {item.gender}</p>
                       <div className="container-fluid d-flex">
+                          <Link to ={`/singlecharacter/${item.uid}`}>
                           <button type="button" className="btn btn-dark text-light">Learn More!</button>
+                          </Link>
                           <button type="button" className="btn btn-dark text-light ms-2"><i className="fa-solid fa-heart"></i></button>
                         </div>
                     </div>
