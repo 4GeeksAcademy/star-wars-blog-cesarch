@@ -1,6 +1,8 @@
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import { LandingPage } from "../components/LandingPage.jsx";
+import { Characters } from "../components/Characters.jsx";
+import { Planets } from "../components/Planets.jsx";
+import { Vehicles } from "../components/Vehicles.jsx";
 
 export const Home = () => {
 
@@ -8,7 +10,9 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5">
-			<LandingPage />
+			<Characters />
+			<Planets />
+			<Vehicles />
 		</div>
 	);
 }; 
