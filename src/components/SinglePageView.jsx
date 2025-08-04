@@ -45,12 +45,12 @@ export const SinglePageView = () => {
         </div>
       </div>
       <div className="row justify-content-between my-3 text-center">
-        <div className="col-2 bg-light border">{planet?.name}</div>
-        <div className="col-2 bg-danger border">{planet?.climate}</div>
-        <div className="col-2 bg-primary border">{planet?.terrain}</div>
-        <div className="col-2 bg-light border">{planet?.population}</div>
-        <div className="col-2 bg-light border">{planet?.gravity}</div>
-        <div className="col-2 bg-light border">{planet?.diameter}</div>
+        <div className="col-2 bg-danger border-dark">{planet?.name}</div>
+        <div className="col-2 bg-danger border-dark">{planet?.climate}</div>
+        <div className="col-2 bg-danger border-dark">{planet?.terrain}</div>
+        <div className="col-2 bg-danger border-dark">{planet?.population}</div>
+        <div className="col-2 bg-danger border-dark">{planet?.gravity}</div>
+        <div className="col-2 bg-danger border-dark">{planet?.diameter}</div>
       </div>
     </div>
   );

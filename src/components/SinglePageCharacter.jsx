@@ -45,12 +45,12 @@ export const SinglePageCharacter = () => {
                 </div>
               </div>
               <div className="row justify-content-between my-3 text-center">
-                <div className="col-2 bg-light border">{character?.name}</div>
-                <div className="col-2 bg-danger border">{character?.eye_color}</div>
-                <div className="col-2 bg-primary border">{character?.hair_color}</div>
-                <div className="col-2 bg-light border">{character?.gender}</div>
-                <div className="col-2 bg-light border">{character?.birth_year}</div>
-                <div className="col-2 bg-light border">{character?.height}</div>
+                <div className="col-2 bg-danger border-dark">{character?.name}</div>
+                <div className="col-2 bg-danger border-dark">{character?.eye_color}</div>
+                <div className="col-2 bg-danger border-dark">{character?.hair_color}</div>
+                <div className="col-2 bg-danger border-dark">{character?.gender}</div>
+                <div className="col-2 bg-danger border-dark">{character?.birth_year}</div>
+                <div className="col-2 bg-danger border-dark">{character?.height}</div>
               </div>
             </div>
     )

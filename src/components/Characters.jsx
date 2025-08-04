@@ -1,96 +1,75 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
+import { useFavorites } from "./FavoriteList";
 
 export const Characters = () => {
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+  const [characters, setCharacters] = useState([]);
 
-    const [characters,setCharacters] = useState([])
+  useEffect(() => {
+    getCharacters();
+  }, []);
 
-    useEffect(() => {
-        getCharacters()
-    }, [])
-  
   const getCharacters = async () => {
-        const characters = "https://www.swapi.tech/api/people?page=1&limit=10"
-        try {
-            const response = await fetch(characters)
-            const data = await response.json()
-            
-            const characterPropperties = await Promise.all(
-                data.results.map(async (person) => {
-                    const response = await fetch(person.url)
-                    const data = await response.json()
-                    return {
-                      ...data.result.properties, 
-                      uid: person.uid
-                }
-              })
-            )
+    const characters = "https://www.swapi.tech/api/people?page=1&limit=10";
+    try {
+      const response = await fetch(characters);
+      const data = await response.json();
 
-            setCharacters(characterPropperties)
-        } catch (error) {
-            console.error(error.message)
-        }
-  }
+      const characterPropperties = await Promise.all(
+        data.results.map(async (person) => {
+          const response = await fetch(person.url);
+          const data = await response.json();
+          return {
+            ...data.result.properties,
+            uid: person.uid,
+          };
+        })
+      );
 
-  const grouped = groupCharacters(characters, 5);
+      setCharacters(characterPropperties);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <div className="container mt-4">
       <h3 className="text-light">Characters</h3>
 
-      <div id="cardCarousel" className="carousel slide" data-bs-ride="false">
-        <div className="carousel-inner">
-          {grouped.map((group, index) => (
-            <div
-              className={`carousel-item ${index === 0 ? "active" : ""}`}
-              key={index}
-            >
-              <div className="d-flex justify-content-center">
-                {group.map((item, i) => (
-                  <div className="card mx-2" style={{ width: "800px", height: "500px" }} key={i}>
-                    <img src={rigoImageUrl} alt="" className="card-img-top" />
-                    <div className="card-body">
-                      <h5 className="d-flex card-title">{item.name}</h5>
-                      <p className="d-flex card-text">Eye color: {item.eye_color}</p>
-                      <p className="d-flex card-text">Hair color: {item.hair_color}</p>
-                      <p className="d-flex card-text">Gender: {item.gender}</p>
-                      <div className="container-fluid d-flex">
-                          <Link to ={`/singlecharacter/${item.uid}`}>
-                          <button type="button" className="btn btn-dark text-light">Learn More!</button>
-                          </Link>
-                          <button type="button" className="btn btn-dark text-light ms-2"><i className="fa-solid fa-heart"></i></button>
-                        </div>
-                    </div>
-                  </div>
-                ))}
+      <div className="d-flex overflow-auto gap-3 py-3">
+        {characters.map((item, i) => (
+          <div className="card" style={{ minWidth: "18rem" }} key={i}>
+            <img src={rigoImageUrl} alt="" className="card-img-top" />
+            <div className="card-body">
+              <h5 className="card-title">{item.name}</h5>
+              <p className="card-text">Eye color: {item.eye_color}</p>
+              <p className="card-text">Hair color: {item.hair_color}</p>
+              <p className="card-text">Gender: {item.gender}</p>
+              <div className="d-flex justify-content-between mx-5">
+                <Link to={`/singlecharacter/${item.uid}`}>
+                  <button className="btn btn-dark">Learn More</button>
+                </Link>
+                <button
+                  className="btn btn-dark ms-2"
+                  onClick={() =>
+                    isFavorite(item.uid, "character")
+                      ? removeFavorite(item.uid, "character")
+                      : addFavorite({...item, type: "character"})
+                  }
+                >
+                  <i
+                    className={`fa-${
+                      isFavorite(item.uid, "character") ? "solid" : "regular"
+                    } fa-heart`}
+                  ></i>
+                </button>
               </div>
             </div>
-          ))}
-        </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#cardCarousel"
-          data-bs-slide="prev"
-        >
-          <span className="carousel-control-prev-icon"></span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#cardCarousel"
-          data-bs-slide="next"
-        >
-          <span className="carousel-control-next-icon"></span>
-        </button>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
-function groupCharacters(arr, size) {
-  return arr.reduce((acc, _, i) => {
-    if (i % size === 0) acc.push(arr.slice(i, i + size));
-    return acc;
-  }, []);
-}
