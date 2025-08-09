@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useFavorites } from "./FavoriteList"; // Asegúrate que la ruta sea correcta
+import { useFavorites } from "./FavoriteList";
 
 export const Navbar = () => {
   const { favorites, removeFavorite } = useFavorites();
@@ -30,7 +30,7 @@ export const Navbar = () => {
                   <span>{item.name}</span>
                   <button
                     className="btn btn-sm btn-outline-danger ms-1"
-                    onClick={() => removeFavorite(item.uid)}
+                    onClick={() => removeFavorite(item.uid, item.type)}
                   >
                     <i className="fa-solid fa-trash"></i>
                   </button>

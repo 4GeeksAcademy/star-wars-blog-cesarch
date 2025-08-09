@@ -12,6 +12,7 @@ import { Demo } from "./pages/Demo";
 import {SinglePage} from "./pages/SinglePage";
 import { SingleCharacter } from "./pages/SingleCharacter";
 import { SingleVehicle } from "./pages/SingleVehicle";
+import { SinglePageView } from "./components/SinglePageView";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -31,6 +32,7 @@ export const router = createBrowserRouter(
         <Route path="/singlepage/:uid" element={<SinglePage />} />
         <Route path="/singlecharacter/:uid" element={<SingleCharacter />} />
         <Route path="/singlevehicle/:uid" element={<SingleVehicle />} />
+        <Route path="/singlepageview/:uid" element={<SinglePageView />} />
       </Route>
     )
 );

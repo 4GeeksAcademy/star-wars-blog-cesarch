@@ -41,12 +41,12 @@ export const SinglePageVehicle = () => {
                 </div>
               </div>
               <div className="row justify-content-between my-3 text-center">
-                <div className="col-2 bg-danger border-black">{vehicles?.name}</div>
-                <div className="col-2 bg-danger border-black">{vehicles?.model}</div>
-                <div className="col-2 bg-primary border-black">{vehicles?.vehicle_class}</div>
-                <div className="col-2 bg-danger border-black">{vehicles?.cost_in_credits}</div>
-                <div className="col-2 bg-danger border-black">{vehicles?.passengers}</div>
-                <div className="col-2 bg-danger border-black">{vehicles?.manufacturer}</div>
+                <div className="col-2 bg-danger border-black">Name: {vehicles?.name}</div>
+                <div className="col-2 bg-danger border-black">Model: {vehicles?.model}</div>
+                <div className="col-2 bg-primary border-black">Class: {vehicles?.vehicle_class}</div>
+                <div className="col-2 bg-danger border-black">Price: {vehicles?.cost_in_credits}</div>
+                <div className="col-2 bg-danger border-black">Passengers: {vehicles?.passengers}</div>
+                <div className="col-2 bg-danger border-black">Manufacturer: {vehicles?.manufacturer}</div>
               </div>
             </div>
           );
